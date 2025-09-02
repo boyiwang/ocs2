@@ -9,12 +9,12 @@ Compile configuration
 ```shell
 catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-march=native -mtune=native"
 ```
-When installing hpipm_catkin, hpipm will be downloaded automatically in /build/hpipm_catkin/download
-copy the folder to src/ocs2/ocs2_sqp/hpipm_catkin/hpipm
-Edit its CMakeLists, uncomment the line "set(TARGET GENERIC CACHE STRING "Set CPU architecture target")" and uncomment "AVX"
-Edit the CMakeLists of hpipm_catkin, comment "FetchContent_Declare，FetchContent_MakeAvailable"
-Add the line "add_subdirectory(${HPIPM_DOWNLOAD_DIR} ${HPIPM_BUILD_DIR})"
-Recompile again.
+- When installing hpipm_catkin, hpipm will be downloaded automatically in `/build/hpipm_catkin/download`.
+- Copy the folder to `src/ocs2/ocs2_sqp/hpipm_catkin/hpipm`.
+- Edit its CMakeLists, uncomment the line `set(TARGET GENERIC CACHE STRING "Set CPU architecture target")` and uncomment `AVX`.
+- Edit the CMakeLists of hpipm_catkin, comment `FetchContent_Declare，FetchContent_MakeAvailable`.
+- Add the line `add_subdirectory(${HPIPM_DOWNLOAD_DIR} ${HPIPM_BUILD_DIR})`.
+- Recompile again.
 
 ## Summary
 OCS2 is a C++ toolbox tailored for Optimal Control for Switched Systems (OCS2). The toolbox provides an efficient implementation of the following algorith
