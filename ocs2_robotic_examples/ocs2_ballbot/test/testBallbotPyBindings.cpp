@@ -31,6 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <ocs2_ballbot/BallbotPyBindings.h>
 #include <ocs2_ballbot/package_path.h>
+#include <chrono>
 
 TEST(Ballbot, PyBindings) {
   // create binding interface
@@ -52,7 +53,11 @@ TEST(Ballbot, PyBindings) {
 
   bindings.reset(targetTrajectories);
   bindings.setObservation(0.0, initState, zeroInput);
+  auto startTime = std::chrono::high_resolution_clock::now();
   bindings.advanceMpc();
+  auto endTime = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+  std::cout << "MPC computation time: " << duration.count() << " ms" << std::endl;
 
   ocs2::scalar_array_t t_arr;
   ocs2::vector_array_t x_arr;

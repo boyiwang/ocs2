@@ -61,7 +61,7 @@ ddp
   constraintTolerance           1e-3
 
   displayInfo                   false
-  displayShortSummary           true
+  displayShortSummary           false
   checkNumericalStability       false
 
   AbsTolODE                     1e-5

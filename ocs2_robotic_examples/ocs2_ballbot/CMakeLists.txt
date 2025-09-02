@@ -11,8 +11,14 @@ set(CATKIN_PACKAGE_DEPENDENCIES
   ocs2_ddp
   ocs2_slp
   ocs2_sqp
+  ocs2_ros_interfaces
   ocs2_robotic_tools
   ocs2_python_interface
+)
+
+find_package(catkin REQUIRED COMPONENTS
+  roslib
+  ${CATKIN_PACKAGE_DEPENDENCIES}
 )
 
 find_package(catkin REQUIRED COMPONENTS
@@ -151,3 +157,18 @@ target_link_libraries(test_BallbotPyBindings
 
 # python tests
 catkin_add_nosetests(test)
+
+################
+## Exeuatable ##
+################
+# add_executable(ballbot_example
+#   src/BallbotSimpleExample.cpp
+# )
+# target_include_directories(ballbot_example PRIVATE
+#   ${PROJECT_BINARY_DIR}/include
+# )
+# target_link_libraries(ballbot_example
+#   ${PROJECT_NAME}
+#   ${catkin_LIBRARIES}
+#   ${Boost_LIBRARIES}
+# )

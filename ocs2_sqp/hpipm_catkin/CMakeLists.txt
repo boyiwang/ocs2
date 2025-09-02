@@ -17,7 +17,8 @@ include(FetchContent)
 set(HPIPM_DEVEL_PREFIX ${CATKIN_DEVEL_PREFIX} CACHE STRING "HPIPM install path")
 set(HPIPM_INCLUDE_DIR ${HPIPM_DEVEL_PREFIX}/include)
 set(HPIPM_LIB_DIR ${HPIPM_DEVEL_PREFIX}/lib)
-set(HPIPM_DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}/download)
+# set(HPIPM_DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}/download)
+set(HPIPM_DOWNLOAD_DIR ${CMAKE_CURRENT_LIST_DIR}/hpipm)
 set(HPIPM_BUILD_DIR ${CMAKE_CURRENT_BINARY_DIR}/build)
 
 # Create directories if they do not exist
@@ -35,16 +36,18 @@ set(BUILD_SHARED_LIBS ON CACHE STRING "Build shared libraries" FORCE)
 set(HPIPM_TESTING OFF CACHE BOOL "Examples enabled")
 
 # Download & build source
-FetchContent_Declare(hpipmDownload
-  GIT_REPOSITORY https://github.com/giaf/hpipm
-  GIT_TAG 255ffdf38d3a5e2c3285b29568ce65ae286e5faf
-  UPDATE_COMMAND ""
-  SOURCE_DIR ${HPIPM_DOWNLOAD_DIR}
-  BINARY_DIR ${HPIPM_BUILD_DIR}
-  BUILD_COMMAND $(MAKE)
-  INSTALL_COMMAND "$(MAKE) install"
-  )
-FetchContent_MakeAvailable(hpipmDownload)
+# FetchContent_Declare(hpipmDownload
+#   # GIT_REPOSITORY https://github.com/giaf/hpipm
+#   # GIT_TAG 255ffdf38d3a5e2c3285b29568ce65ae286e5faf
+#   # UPDATE_COMMAND ""
+#   SOURCE_DIR ${HPIPM_DOWNLOAD_DIR}
+#   BINARY_DIR ${HPIPM_BUILD_DIR}
+#   BUILD_COMMAND $(MAKE)
+#   INSTALL_COMMAND "$(MAKE) install"
+#   )
+# FetchContent_MakeAvailable(hpipmDownload)
+add_subdirectory(${HPIPM_DOWNLOAD_DIR} ${HPIPM_BUILD_DIR})
+
 
 # Copy header to where catkin expects them
 file(GLOB_RECURSE HEADERS "${HPIPM_DOWNLOAD_DIR}/include/*.h")

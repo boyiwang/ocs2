@@ -14,6 +14,8 @@
 
   <run_depend>ocs2_ballbot</run_depend>
   <run_depend>ocs2_ballbot_ros</run_depend>
+  <!-- <run_depend>ocs2_bikebot</run_depend>
+  <run_depend>ocs2_bikebot_ros</run_depend> -->
   <run_depend>ocs2_cartpole</run_depend>
   <run_depend>ocs2_cartpole_ros</run_depend>
   <run_depend>ocs2_double_integrator</run_depend>

@@ -30,8 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 import unittest
 import numpy as np
 import os
-import time as systime
-import datetime
+import systime, datetime
 
 import rospkg
 
@@ -78,10 +77,10 @@ class ballbot_python_tests(unittest.TestCase):
 
         self.mpc.setObservation(time, x, u)
         start_time = systime.time()
-        # print("Starting MPC computation at", datetime.datetime.now().strftime("%H:%M:%S"))
+        print("Starting MPC computation at", datetime.datetime.now().strftime("%H:%M:%S"))
         self.mpc.advanceMpc()
         end_time = systime.time()
-        # print("MPC computation finished at", datetime.datetime.now().strftime("%H:%M:%S"))
+        print("MPC computation finished at", datetime.datetime.now().strftime("%H:%M:%S"))
         print("MPC computation time:", end_time - start_time, "seconds")
 
         # instantiate c++ std arrays to store results
@@ -94,22 +93,22 @@ class ballbot_python_tests(unittest.TestCase):
         print("MPC solution has", t_result.__len__(), "time steps")
         print("t\t\tx\t\tu")
 
-        # for t, x, u in zip(t_result, x_result, u_result):
-        #     print("{:.4f}, \t\t{}, \t\t {}".format(t, x, u))
+        for t, x, u in zip(t_result, x_result, u_result):
+            print("{:.4f}, \t\t{}, \t\t {}".format(t, x, u))
 
         print("\n### Testing flow map and its derivative")
         flowMap = self.mpc.flowMapLinearApproximation(
             t_result[0], x_result[0], u_result[0]
         )
-        # print("dxdt", flowMap.f)
-        # print("A", flowMap.dfdx)
-        # print("B", flowMap.dfdu)
+        print("dxdt", flowMap.f)
+        print("A", flowMap.dfdx)
+        print("B", flowMap.dfdu)
 
         print("\n### Testing cost and its derivative")
         L = self.mpc.costQuadraticApproximation(t_result[0], x_result[0], u_result[0])
-        # print("L", L.f)
-        # print("dLdx", L.dfdx)
-        # print("dLdu", L.dfdu)
+        print("L", L.f)
+        print("dLdx", L.dfdx)
+        print("dLdu", L.dfdu)
 
 
 if __name__ == "__main__":

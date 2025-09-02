@@ -1,5 +1,5 @@
 <launch>
-    <arg name="rviz"       default="true"/>
+    <arg name="rviz"       default="false"/>
     <arg name="multiplot"  default="false"/>
     <arg name="task_name"  default="mpc"/>
 
